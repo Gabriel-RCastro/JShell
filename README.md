@@ -1,19 +1,19 @@
 # JShell – Interface de Linha de Comando
 
 ## 1 Introdução
----
+
 Neste projeto, será implementado uma Interface de Linha de Comando (CLI) em Java, nos moldes do bash, tcsh, fish, zsh, cmd.exe, PowerShell, dentre tantos outros. Essa versão será mais simples, porém completamente funcional para atividades básicas como: verificar o relógio; manipular e navegar pelo sistema de arquivos; lançar novos processos rodando outros programas.
 
 O objetivo é conhecer sobre as interfaces de programação (APIs) mais baixas de um sistema operacional, que são as chamadas de sistema. Especificamente, conhecer as principais chamadas oferecidas pela Java Virtual Machine (JVM), que possuem a vantagem de serem traduzidas para o sistema operacional hospedeiro sem precisarmos reprogramar ou recompilar o programa, enquanto provêm funcionalidade similar.
 
 ---
 ## 2 Ferramentas e Instruções
----
+
 O programa será rodado a partir de um terminal com o seguinte comando: ```java -jar jsh```.
 
 ---
 ## 3 Bibliografia
----
+
 Para este trabalho, recomenda-se a utilização das seguintes fontes para pesquisa e aprendizado dos tópicos pertinentes:
 1. ORACLE. Lesson: Basic I/O. The Java™Tutorial > Essential Classes. Disponível em: <https://docs.oracle.com/javase/tutorial/essential/io/>.
 
@@ -23,7 +23,7 @@ Para este trabalho, recomenda-se a utilização das seguintes fontes para pesqui
 
 ---
 ## 4 Exemplo de uso do Jshell
----
+
 A seguir, a transcrição de um exemplo de uso de um Jshell totalmente implementado e
 funcional, em um sistema com as seguintes características:
 
@@ -82,6 +82,7 @@ ERRO: o programa indicou termino com falha!
 professor#1001:/home/professor/% encerrar
 ```
 
+---
 ### 5.1 mesg_do_dia e falha_arbitraria
 ---
 
