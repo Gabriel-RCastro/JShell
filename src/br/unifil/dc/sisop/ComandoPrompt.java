@@ -13,8 +13,19 @@ import java.util.Collections;
 public class ComandoPrompt {
     
     public ComandoPrompt(String comando) {
-        // ESCREVA AQUI SEU CODIGO PARA ESTRUTURAR O COMANDO RECEBIDO DO PROMPT.
-        throw new RuntimeException("Método ainda não implementado");
+        if (comando.contains(" ")){
+            //Primeira palavra da linha (nome do comando)
+            nome = comando.substring(0, comando.indexOf(' '));
+
+            //Retira o nome da string (primeira palavra) e deixa só os argumentos
+            comando = comando.substring(comando.indexOf(' ')+1);
+
+            //Por expressão regular transforma em array os elementos separados por ' '
+            argumentos = (comando.split(" "));
+        } else {
+            nome = comando;
+            argumentos = new String[0];
+        }
     }
     
     /**

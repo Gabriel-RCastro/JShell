@@ -1,5 +1,7 @@
 package br.unifil.dc.sisop;
 
+import java.util.Scanner;
+
 /**ss
  * Write a description of class Jsh here.
  *
@@ -55,8 +57,11 @@ public final class Jsh {
     * @return 
     */
     public static ComandoPrompt lerComando() {
+        Scanner teclado = new Scanner(System.in);
+        String entrada = teclado.nextLine();
 
-        throw new RuntimeException("Método ainda não implementado.");
+        ComandoPrompt cmdPrompt = new ComandoPrompt(entrada);
+        return cmdPrompt;
     }
 
     /**
