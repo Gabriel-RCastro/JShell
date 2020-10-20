@@ -45,7 +45,7 @@ public class ComandoPrompt {
      */
     public List<String> getArgumentos() {
 
-        return Collections.unmodifiableList(Arrays.asList(argumentos));
+        return List.of(argumentos);
     }
     
     private final String nome;

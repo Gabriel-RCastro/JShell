@@ -1,5 +1,6 @@
 package br.unifil.dc.sisop;
 
+import java.util.Optional;
 import java.util.Scanner;
 
 /**ss
@@ -76,7 +77,24 @@ public final class Jsh {
     * programa desconhecido.
     */
     public static void executarComando(ComandoPrompt comando) {
-        throw new RuntimeException("Método ainda não implementado.");
+        switch (comando.getNome()) {
+            case ("encerrar"):
+                break;
+
+            case ("relogio"):
+                break;
+
+            case ("la"):
+                break;
+
+            case ("cd"):
+                break;
+            case ("ad"):
+                break;
+
+            case ("mdt"):
+                break;
+        }
     }
 
     public static int executarPrograma(ComandoPrompt comando) {
