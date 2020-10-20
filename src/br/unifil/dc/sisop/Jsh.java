@@ -79,7 +79,7 @@ public final class Jsh {
     public static void executarComando(ComandoPrompt comando) {
         switch (comando.getNome()) {
             case ("encerrar"):
-                break;
+                System.exit(0);
 
             case ("relogio"):
                 break;
