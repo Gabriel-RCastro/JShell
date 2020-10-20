@@ -1,12 +1,16 @@
 package br.unifil.dc.sisop;
 
-/**
+/**ss
  * Write a description of class Jsh here.
  *
- * @author Ricardo Inacio Alvares e Silva
- * @version 180823
+ * @author Gabriel Rodrigues de Castro
+ * @version 1.0
  */
 public final class Jsh {
+    public static String nomeUsuario;
+    public static String UID_usuario;
+    public static String diretorioUsuario;
+    public static String barraSistema;
     
     /**
     * Funcao principal do Jsh.
@@ -25,8 +29,19 @@ public final class Jsh {
     * terminal está pronto para receber o próximo comando como entrada.
     */
     public static void exibirPrompt() {
+        //Nome do usuario
+        nomeUsuario = System.getProperty("user.name");
 
-        throw new RuntimeException("Método ainda não implementado.");
+        //UID do usuario
+        UID_usuario = MetodosAux.pegarUID();
+
+        //Diretorio do usuario
+        diretorioUsuario = System.getProperty("user.dir");
+        
+        //Barra do sistema
+        barraSistema = System.getProperty("file.separator");
+
+        System.err.print(nomeUsuario + "#" + UID_usuario + ":" + diretorioUsuario + barraSistema + "% ");
     }
 
     /**
