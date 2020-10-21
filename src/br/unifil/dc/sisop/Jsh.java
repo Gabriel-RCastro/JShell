@@ -86,6 +86,7 @@ public final class Jsh {
                 break;
 
             case ("la"):
+                ComandosInternos.escreverListaArquivos(Optional.of(diretorioUsuario));
                 break;
 
             case ("cd"):

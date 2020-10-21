@@ -1,8 +1,10 @@
 package br.unifil.dc.sisop;
 
+import java.io.File;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Objects;
 import java.util.Optional;
 
 /**
@@ -35,7 +37,18 @@ public final class ComandosInternos {
     }
     
     public static int escreverListaArquivos(Optional<String> nomeDir) {
-        throw new RuntimeException("Método ainda não implementado");
+        //Cria um objeto File do diretorio atual
+        File diretorio = new File(nomeDir.get());
+
+        //Cria uma lista de Files dos arquivos do diretorio
+        File[] listaArquivos = diretorio.listFiles();
+
+        //Pega o nome dos arquivos da lista e mostra um em cada linha
+        assert listaArquivos != null;
+        for (File listaArquivo : listaArquivos) {
+            System.out.println(listaArquivo.getName());
+        }
+        return 1;
     }
     
     public static int criarNovoDiretorio(String nomeDir) {
