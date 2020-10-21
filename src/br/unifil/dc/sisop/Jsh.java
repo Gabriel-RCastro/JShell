@@ -1,5 +1,8 @@
 package br.unifil.dc.sisop;
 
+import java.io.File;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Optional;
 import java.util.Scanner;
 
@@ -114,22 +117,51 @@ public final class Jsh {
                     System.out.println("Insira o nome do diretorio desejado! Ex: mdt <nome>");
                     break;
                 }
+
+            default:
+                executarPrograma(comando);
         }
     }
 
+    /**
+     * Método que pega a lista de todos os arquivos do diretorio atual,
+     * verifica se o comando tem o mesmo nome de algum arquivo e se esse pode ser executado
+     * se sim, executa o programa
+     * se não, apresenta uma falha relativa a verificação anterior.
+     *
+     * @param comando comando que contém o nome do arquivo a ser executado.
+     */
     public static int executarPrograma(ComandoPrompt comando) {
-        throw new RuntimeException("Método ainda não implementado.");
+        String barraSistema = System.getProperty("file.separator");
+        String diretorioAtual = System.getProperty("user.dir");
+        String caminhoDiretorio = diretorioAtual + barraSistema + comando.getNome();
+
+        File nomeComando = new File(caminhoDiretorio);
+        File diretorio = new File(diretorioAtual);
+
+        List<File> listaArquivos = Arrays.asList(diretorio.listFiles());
+
+        if (listaArquivos.contains(nomeComando)) {
+            if (nomeComando.canExecute()) {
+                if (MetodosAux.executarProcesso(comando) != 0) {
+                    System.err.println("ERRO: o programa indicou termino com falha!");
+                }
+            } else {
+                System.err.println("Arquivo '" + comando.getNome() + "' não tem permissão de execução.");
+            }
+        } else {
+            System.err.println("Comando ou programa '" + comando.getNome() + "' inexistente.");
+        }
+        return 1;
     }
     
-    
     /**
-     * Entrada do programa. Provavelmente você não precisará modificar esse método.
+     * Entrada do programa.
      */
     public static void main(String[] args) {
 
         promptTerminal();
     }
-    
     
     /**
      * Essa classe não deve ser instanciada.

@@ -13,7 +13,7 @@ import java.util.Optional;
  * @version 1.0
  */
 public final class ComandosInternos {
-    
+
     public static int exibirRelogio() {
         try {
             //Define os formatos de data e hora
@@ -34,7 +34,7 @@ public final class ComandosInternos {
             return 1;
         }
     }
-    
+
     public static int escreverListaArquivos(Optional<String> nomeDir) {
         //Cria um objeto File do diretorio atual
         File diretorio = new File(nomeDir.get());
@@ -49,7 +49,7 @@ public final class ComandosInternos {
         }
         return 1;
     }
-    
+
     public static int criarNovoDiretorio(String nomeDir) {
         String barraSistema = System.getProperty("file.separator");
         String diretorioAtual = System.getProperty("user.dir");
@@ -62,7 +62,7 @@ public final class ComandosInternos {
         System.out.println("Diretorio criado com sucesso!");
         return 1;
     }
-    
+
     public static int apagarDiretorio(String nomeDir) {
         String barraSistema = System.getProperty("file.separator");
         String diretorioAtual = System.getProperty("user.dir");
@@ -79,8 +79,9 @@ public final class ComandosInternos {
                 //Apaga os subdiretorios e os arquivos do diretorio a ser excluído
                 File[] listaArquivos = diretorio.listFiles();
 
-                for (int i = 0; i < listaArquivos.length; i++){
-                    listaArquivos[i].delete();
+                assert listaArquivos != null;
+                for (File listaArquivo : listaArquivos) {
+                    listaArquivo.delete();
                 }
             }
         } else if (!diretorio.exists()) {
@@ -90,7 +91,7 @@ public final class ComandosInternos {
         }
         return 1;
     }
-    
+
     public static int mudarDiretorioTrabalho(String nomeDir){
         String barraSistema = System.getProperty("file.separator");
         String diretorioAtual = System.getProperty("user.dir");
@@ -115,7 +116,7 @@ public final class ComandosInternos {
         }
         return 1;
     }
-    
+
     /**
      * Essa classe não deve ser instanciada.
      */
