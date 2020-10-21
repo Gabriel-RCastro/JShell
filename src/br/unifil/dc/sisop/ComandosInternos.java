@@ -52,7 +52,16 @@ public final class ComandosInternos {
     }
     
     public static int criarNovoDiretorio(String nomeDir) {
-        throw new RuntimeException("Método ainda não implementado");
+        String barraSistema = System.getProperty("file.separator");
+        String diretorioAtual = System.getProperty("user.dir");
+        String caminhoDiretorio = diretorioAtual + barraSistema + nomeDir;
+
+        //Cria um novo diretorio no diretorio atual de trabalho com o nome especificado no argumento
+        File diretorio = new File(caminhoDiretorio);
+        diretorio.mkdir();
+
+        System.out.println("Diretorio criado com sucesso!");
+        return 1;
     }
     
     public static int apagarDiretorio(String nomeDir) {

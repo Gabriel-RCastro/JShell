@@ -90,7 +90,14 @@ public final class Jsh {
                 break;
 
             case ("cd"):
-                break;
+                try {
+                    ComandosInternos.criarNovoDiretorio(comando.getArgumentos().get(0));
+                    break;
+                } catch (ArrayIndexOutOfBoundsException e) {
+                    System.out.println("Insira o nome do diretorio! Ex: cd <nome>");
+                    break;
+                }
+
             case ("ad"):
                 break;
 
