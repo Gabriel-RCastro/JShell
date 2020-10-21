@@ -82,6 +82,7 @@ public final class Jsh {
                 System.exit(0);
 
             case ("relogio"):
+                ComandosInternos.exibirRelogio();
                 break;
 
             case ("la"):

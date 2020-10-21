@@ -7,8 +7,8 @@ import java.util.Collections;
 /**
  * Write a description of class ComandoPrompt here.
  *
- * @author Ricardo Inacio Alvares e Silva
- * @version 180823
+ * @author Gabriel Rodrigues de Castro
+ * @version 1.0
  */
 public class ComandoPrompt {
     
