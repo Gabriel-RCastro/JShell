@@ -1,8 +1,6 @@
 package br.unifil.dc.sisop;
 
 import java.util.List;
-import java.util.Arrays;
-import java.util.Collections;
 
 /**
  * Write a description of class ComandoPrompt here.

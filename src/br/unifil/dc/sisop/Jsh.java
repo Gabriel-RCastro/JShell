@@ -55,7 +55,6 @@ public final class Jsh {
     * que o usuario pressione a tecla <ENTER>, ou seja, ate que seja lido o caractere
     * EOL (End Of Line).
     *
-    * @return 
     */
     public static ComandoPrompt lerComando() {
         Scanner teclado = new Scanner(System.in);
@@ -108,7 +107,13 @@ public final class Jsh {
                 }
 
             case ("mdt"):
-                break;
+                try{
+                    ComandosInternos.mudarDiretorioTrabalho(comando.getArgumentos().get(0));
+                    break;
+                } catch (ArrayIndexOutOfBoundsException e) {
+                    System.out.println("Insira o nome do diretorio desejado! Ex: mdt <nome>");
+                    break;
+                }
         }
     }
 

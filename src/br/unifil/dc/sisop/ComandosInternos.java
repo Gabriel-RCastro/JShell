@@ -4,7 +4,6 @@ import java.io.File;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.Objects;
 import java.util.Optional;
 
 /**
@@ -93,7 +92,28 @@ public final class ComandosInternos {
     }
     
     public static int mudarDiretorioTrabalho(String nomeDir){
-        throw new RuntimeException("Método ainda não implementado");
+        String barraSistema = System.getProperty("file.separator");
+        String diretorioAtual = System.getProperty("user.dir");
+        String caminhoDiretorio;
+
+        //Verifica se o argumento é um diretorio/arquivo do diretorio atual ou um caminho especificado com '/'
+        if(nomeDir.contains("/")) {
+            caminhoDiretorio = nomeDir;
+        } else{
+            caminhoDiretorio = diretorioAtual + barraSistema + nomeDir;
+        }
+
+        File diretorio = new File(caminhoDiretorio);
+
+        //Verifica se esse argumento é um diretorio e se ele existe
+        if ((diretorio.exists()) && (diretorio.isDirectory())){
+            System.setProperty("user.dir", caminhoDiretorio);
+        } else if (!diretorio.exists()) {
+            System.out.println("Diretorio inexistente!");
+        } else if (!diretorio.isDirectory()) {
+            System.out.println("Isso nao é um diretorio!");
+        }
+        return 1;
     }
     
     /**
