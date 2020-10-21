@@ -65,8 +65,31 @@ public final class ComandosInternos {
     }
     
     public static int apagarDiretorio(String nomeDir) {
+        String barraSistema = System.getProperty("file.separator");
+        String diretorioAtual = System.getProperty("user.dir");
+        String caminhoDiretorio = diretorioAtual + barraSistema + nomeDir;
 
-        throw new RuntimeException("Método ainda não implementado");
+        File diretorio = new File(caminhoDiretorio);
+
+        //Verifica se esse argumento é um diretorio e se ele existe
+        if((diretorio.exists()) && (diretorio.isDirectory())){
+            //Se existir ele é deletado
+            if (diretorio.delete()) {
+                System.out.println("Deletado com sucesso!");
+            } else {
+                //Apaga os subdiretorios e os arquivos do diretorio a ser excluído
+                File[] listaArquivos = diretorio.listFiles();
+
+                for (int i = 0; i < listaArquivos.length; i++){
+                    listaArquivos[i].delete();
+                }
+            }
+        } else if (!diretorio.exists()) {
+            System.out.println("Diretorio inexistente!");
+        } else if (!diretorio.isDirectory()) {
+            System.out.println("Isso nao é um diretorio!");
+        }
+        return 1;
     }
     
     public static int mudarDiretorioTrabalho(String nomeDir){

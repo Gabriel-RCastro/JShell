@@ -99,7 +99,13 @@ public final class Jsh {
                 }
 
             case ("ad"):
-                break;
+                try{
+                    ComandosInternos.apagarDiretorio(comando.getArgumentos().get(0));
+                    break;
+                } catch (ArrayIndexOutOfBoundsException e) {
+                    System.out.println("Insira o nome do diretorio a ser apagado! Ex: ad <nome>");
+                    break;
+                }
 
             case ("mdt"):
                 break;
