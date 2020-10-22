@@ -9,7 +9,7 @@ O objetivo é conhecer sobre as interfaces de programação (APIs) mais baixas d
 ---
 ## 2 Ferramentas e Instruções
 
-O programa será rodado a partir de um terminal com o seguinte comando: ```java -jar jsh```.
+O programa será rodado a partir de um terminal com o seguinte comando: ```java -jar jshell.jar```.
 
 ---
 ## 3 Bibliografia
@@ -22,9 +22,9 @@ Para este trabalho, recomenda-se a utilização das seguintes fontes para pesqui
 3. TANENBAUM, Andrew S. Sistemas operacionais modernos. Rio de Janeiro: Prentice-Hall, 2010. 672 p. ISBN 9788576052371.
 
 ---
-## 4 Exemplo de uso do Jshell
+## 4 Exemplo de uso do JShell
 
-A seguir, a transcrição de um exemplo de uso de um Jshell totalmente implementado e
+A seguir, a transcrição de um exemplo de uso de um JShell totalmente implementado e
 funcional, em um sistema com as seguintes características:
 
 - Nome de login do usuário: professor
@@ -81,40 +81,5 @@ Invalid arguments. Please, RTFM.
 ERRO: o programa indicou termino com falha!
 professor#1001:/home/professor/% encerrar
 ```
-
----
-### 5.1 mesg_do_dia e falha_arbitraria
----
-
-###### Ambos programas são escritos em linguagem C.
-O código de mesg_do_dia.c é:
-```
-#include <stdio.h>
-
-int main() {
-    printf("The only way around is through.\n");
-    return 0;
-}
-```
-
-O código de falha_arbitraria.c é:
-```
-#include <stdio.h>
-
-int main() {
-    printf("Invalid arguments. Please, RTFM.\n");
-    return 1;
-}
-```
-
-Para compilar ambos, é necessário ter instalado no computador um compilador **C** (gcc ou clang, como sugestão) e executar os comandos:
-
-```gcc -o mesg_do_dia mesg_do_dia.c```
-```gcc -o falha_arbitraria falha_arbitraria.c```
-
-ou
-
-```clang -o mesg_do_dia mesg_do_dia.c```
-```clang -o falha_arbitraria falha_arbitraria.c```
 
 ---
