@@ -4,13 +4,12 @@
 
     <groupId>br.unifil.dc.sisop</groupId>
     <artifactId>JShell</artifactId>
-    <version>1.0.2</version>
+    <version>1.0.2-SNAPSHOT</version>
 
     <scm>
         <connection>scm:git:git@github.com:Gabriel-RCastro/JShell.git</connection>
         <developerConnection>scm:git:git@github.com:Gabriel-RCastro/JShell.git</developerConnection>
-    <tag>JShell-1.0.2</tag>
-  </scm>
+     </scm>
 
     <properties>
         <maven.compiler.target>11</maven.compiler.target>
