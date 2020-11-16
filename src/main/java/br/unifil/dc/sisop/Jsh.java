@@ -1,12 +1,9 @@
 package br.unifil.dc.sisop;
 
+import java.util.*;
 import java.io.File;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Optional;
-import java.util.Scanner;
 
-/**ss
+/**
  * Write a description of class Jsh here.
  *
  * @author Gabriel Rodrigues de Castro
@@ -58,13 +55,13 @@ public final class Jsh {
     * que o usuario pressione a tecla <ENTER>, ou seja, ate que seja lido o caractere
     * EOL (End Of Line).
     *
+    * @return new ComandoPrompt();
     */
     public static ComandoPrompt lerComando() {
         Scanner teclado = new Scanner(System.in);
         String entrada = teclado.nextLine();
 
-        ComandoPrompt cmdPrompt = new ComandoPrompt(entrada);
-        return cmdPrompt;
+        return new ComandoPrompt(entrada);
     }
 
     /**
@@ -86,11 +83,11 @@ public final class Jsh {
             case ("relogio"):
                 ComandosInternos.exibirRelogio();
                 break;
-
+    
             case ("la"):
                 ComandosInternos.escreverListaArquivos(Optional.of(diretorioUsuario));
                 break;
-
+            
             case ("cd"):
                 try {
                     ComandosInternos.criarNovoDiretorio(comando.getArgumentos().get(0));
@@ -99,7 +96,7 @@ public final class Jsh {
                     System.out.println("Insira o nome do diretorio! Ex: cd <nome>");
                     break;
                 }
-
+            
             case ("ad"):
                 try{
                     ComandosInternos.apagarDiretorio(comando.getArgumentos().get(0));
@@ -108,7 +105,7 @@ public final class Jsh {
                     System.out.println("Insira o nome do diretorio a ser apagado! Ex: ad <nome>");
                     break;
                 }
-
+            
             case ("mdt"):
                 try{
                     ComandosInternos.mudarDiretorioTrabalho(comando.getArgumentos().get(0));
@@ -117,9 +114,10 @@ public final class Jsh {
                     System.out.println("Insira o nome do diretorio desejado! Ex: mdt <nome>");
                     break;
                 }
-
+    
             default:
                 executarPrograma(comando);
+                
         }
     }
 
@@ -131,15 +129,15 @@ public final class Jsh {
      *
      * @param comando comando que contém o nome do arquivo a ser executado.
      */
-    public static int executarPrograma(ComandoPrompt comando) {
+    public static void executarPrograma(ComandoPrompt comando) {
         String barraSistema = System.getProperty("file.separator");
         String diretorioAtual = System.getProperty("user.dir");
-        String caminhoDiretorio = diretorioAtual + barraSistema + comando.getNome();
+        String caminhoDiretorio = diretorioAtual + barraSistema + comando.getNome(); 
 
         File nomeComando = new File(caminhoDiretorio);
         File diretorio = new File(diretorioAtual);
 
-        List<File> listaArquivos = Arrays.asList(diretorio.listFiles());
+        List<File> listaArquivos = Arrays.asList(Objects.requireNonNull(diretorio.listFiles()));
 
         if (listaArquivos.contains(nomeComando)) {
             if (nomeComando.canExecute()) {
@@ -152,11 +150,10 @@ public final class Jsh {
         } else {
             System.err.println("Comando ou programa '" + comando.getNome() + "' inexistente.");
         }
-        return 1;
     }
     
     /**
-     * Entrada do programa.
+     * Entrada do programa. Provavelmente você não precisará modificar esse método.
      */
     public static void main(String[] args) {
 
