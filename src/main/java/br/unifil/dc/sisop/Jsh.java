@@ -1,7 +1,7 @@
 package br.unifil.dc.sisop;
 
-import java.util.*;
 import java.io.File;
+import java.util.*;
 
 /**
  * Write a description of class Jsh here.
@@ -14,23 +14,23 @@ public final class Jsh {
     public static String UID_usuario;
     public static String diretorioUsuario;
     public static String barraSistema;
-    
+
     /**
-    * Funcao principal do Jsh.
-    */
+     * Funcao principal do Jsh.
+     */
     public static void promptTerminal() {
 
         while (true) {
-    		exibirPrompt();
-    		ComandoPrompt comandoEntrado = lerComando();
-    		executarComando(comandoEntrado);
-    	}
+            exibirPrompt();
+            ComandoPrompt comandoEntrado = lerComando();
+            executarComando(comandoEntrado);
+        }
     }
 
     /**
-    * Escreve o prompt na saida padrao para o usuário reconhecê-lo e saber que o
-    * terminal está pronto para receber o próximo comando como entrada.
-    */
+     * Escreve o prompt na saida padrao para o usuário reconhecê-lo e saber que o
+     * terminal está pronto para receber o próximo comando como entrada.
+     */
     public static void exibirPrompt() {
         //Nome do usuario
         nomeUsuario = System.getProperty("user.name");
@@ -40,7 +40,7 @@ public final class Jsh {
 
         //Diretorio do usuario
         diretorioUsuario = System.getProperty("user.dir");
-        
+
         //Barra do sistema
         barraSistema = System.getProperty("file.separator");
 
@@ -48,15 +48,15 @@ public final class Jsh {
     }
 
     /**
-    * Preenche as strings comando e parametros com a entrada do usuario do terminal.
-    * A primeira palavra digitada eh sempre o nome do comando desejado. Quaisquer
-    * outras palavras subsequentes sao parametros para o comando. A palavras sao
-    * separadas pelo caractere de espaco ' '. A leitura de um comando eh feita ate
-    * que o usuario pressione a tecla <ENTER>, ou seja, ate que seja lido o caractere
-    * EOL (End Of Line).
-    *
-    * @return new ComandoPrompt();
-    */
+     * Preenche as strings comando e parametros com a entrada do usuario do terminal.
+     * A primeira palavra digitada eh sempre o nome do comando desejado. Quaisquer
+     * outras palavras subsequentes sao parametros para o comando. A palavras sao
+     * separadas pelo caractere de espaco ' '. A leitura de um comando eh feita ate
+     * que o usuario pressione a tecla <ENTER>, ou seja, ate que seja lido o caractere
+     * EOL (End Of Line).
+     *
+     * @return new ComandoPrompt();
+     */
     public static ComandoPrompt lerComando() {
         Scanner teclado = new Scanner(System.in);
         String entrada = teclado.nextLine();
@@ -65,16 +65,16 @@ public final class Jsh {
     }
 
     /**
-    * Recebe o comando lido e os parametros, verifica se eh um comando interno e,
-    * se for, o executa.
-    * 
-    * Se nao for, verifica se é o nome de um programa terceiro localizado no atual 
-    * diretorio de trabalho. Se for, cria um novo processo e o executa. Enquanto
-    * esse processo executa, o processo do uniterm deve permanecer em espera.
-    *
-    * Se nao for nenhuma das situacoes anteriores, exibe uma mensagem de comando ou
-    * programa desconhecido.
-    */
+     * Recebe o comando lido e os parametros, verifica se eh um comando interno e,
+     * se for, o executa.
+     * <p>
+     * Se nao for, verifica se é o nome de um programa terceiro localizado no atual
+     * diretorio de trabalho. Se for, cria um novo processo e o executa. Enquanto
+     * esse processo executa, o processo do uniterm deve permanecer em espera.
+     * <p>
+     * Se nao for nenhuma das situacoes anteriores, exibe uma mensagem de comando ou
+     * programa desconhecido.
+     */
     public static void executarComando(ComandoPrompt comando) {
         switch (comando.getNome()) {
             case ("encerrar"):
@@ -83,11 +83,11 @@ public final class Jsh {
             case ("relogio"):
                 ComandosInternos.exibirRelogio();
                 break;
-    
+
             case ("la"):
                 ComandosInternos.escreverListaArquivos(Optional.of(diretorioUsuario));
                 break;
-            
+
             case ("cd"):
                 try {
                     ComandosInternos.criarNovoDiretorio(comando.getArgumentos().get(0));
@@ -96,28 +96,28 @@ public final class Jsh {
                     System.out.println("Insira o nome do diretorio! Ex: cd <nome>");
                     break;
                 }
-            
+
             case ("ad"):
-                try{
+                try {
                     ComandosInternos.apagarDiretorio(comando.getArgumentos().get(0));
                     break;
                 } catch (ArrayIndexOutOfBoundsException e) {
                     System.out.println("Insira o nome do diretorio a ser apagado! Ex: ad <nome>");
                     break;
                 }
-            
+
             case ("mdt"):
-                try{
+                try {
                     ComandosInternos.mudarDiretorioTrabalho(comando.getArgumentos().get(0));
                     break;
                 } catch (ArrayIndexOutOfBoundsException e) {
                     System.out.println("Insira o nome do diretorio desejado! Ex: mdt <nome>");
                     break;
                 }
-    
+
             default:
                 executarPrograma(comando);
-                
+
         }
     }
 
@@ -132,7 +132,7 @@ public final class Jsh {
     public static void executarPrograma(ComandoPrompt comando) {
         String barraSistema = System.getProperty("file.separator");
         String diretorioAtual = System.getProperty("user.dir");
-        String caminhoDiretorio = diretorioAtual + barraSistema + comando.getNome(); 
+        String caminhoDiretorio = diretorioAtual + barraSistema + comando.getNome();
 
         File nomeComando = new File(caminhoDiretorio);
         File diretorio = new File(diretorioAtual);
@@ -151,7 +151,7 @@ public final class Jsh {
             System.err.println("Comando ou programa '" + comando.getNome() + "' inexistente.");
         }
     }
-    
+
     /**
      * Entrada do programa. Provavelmente você não precisará modificar esse método.
      */
@@ -159,9 +159,10 @@ public final class Jsh {
 
         promptTerminal();
     }
-    
+
     /**
      * Essa classe não deve ser instanciada.
      */
-    private Jsh() {}
+    private Jsh() {
+    }
 }

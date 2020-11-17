@@ -10,14 +10,14 @@ import java.io.InputStream;
  * @version 1.0
  */
 public class MetodosAux {
-    
+
     /**
      * Método para pegar o UID do usuário
      * Executa um comando unix via shell.
-     * 
+     *
      * @return UID do usuário.
      */
-    public static String pegarUID() {   
+    public static String pegarUID() {
         String UID = "";
 
         try {
@@ -26,9 +26,9 @@ public class MetodosAux {
 
             InputStream resultado = executarComando.getInputStream();
 
-            int r;  
+            int r;
             while ((r = resultado.read()) != -1) {
-                UID += (char)r;
+                UID += (char) r;
             }
             resultado.close();
 
@@ -39,11 +39,11 @@ public class MetodosAux {
             return "";
         }
     }
-    
+
     /**
      * Método para receber um comando e o executar via shell
      * Cria um processo, transforma a sua saida em uma string e a printa na tela.
-     * 
+     *
      * @param comando nome do programa que será executado.
      * @return código de saida do processo (normal é 0, diferente disso é considerado falha).
      */
@@ -65,7 +65,7 @@ public class MetodosAux {
             byte[] byteSaida = input.readAllBytes();
 
             String stringSaida = new String(byteSaida);
-            
+
             System.out.print(stringSaida);
         } catch (IOException | InterruptedException e) {
             e.printStackTrace();
